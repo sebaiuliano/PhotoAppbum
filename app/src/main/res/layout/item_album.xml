@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="album"
-            type="com.siuliano.photoappbum.models.Album" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

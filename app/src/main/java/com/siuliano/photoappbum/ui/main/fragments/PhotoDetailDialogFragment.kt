@@ -16,7 +16,6 @@ import com.siuliano.photoappbum.databinding.DialogFragmentPhotoDetailBinding
 import com.siuliano.photoappbum.ui.main.MainViewModel
 import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import kotlin.math.roundToInt
 
 class PhotoDetailDialogFragment : DialogFragment() {
     private lateinit var binding: DialogFragmentPhotoDetailBinding
@@ -45,7 +44,7 @@ class PhotoDetailDialogFragment : DialogFragment() {
         }
     }
 
-    //Configuro el tamaño del dialogo en pantalla
+    //Configuro el tamaño del dialog segun dimensiones de pantalla
     private fun setViewMetric(){
         val displayMetrics = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -59,11 +58,11 @@ class PhotoDetailDialogFragment : DialogFragment() {
         binding.clPhotoDetail.minimumHeight = dialogWindowHeight
         binding.clPhotoDetail.minimumWidth = dialogWindowWidth
 
-        layoutParams.copyFrom(dialog?.window!!.attributes)
+        layoutParams.copyFrom(dialog?.window?.attributes)
         layoutParams.width = dialogWindowWidth
         layoutParams.height = dialogWindowHeight
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.window!!.attributes = layoutParams
+        dialog?.window?.attributes = layoutParams
     }
 }

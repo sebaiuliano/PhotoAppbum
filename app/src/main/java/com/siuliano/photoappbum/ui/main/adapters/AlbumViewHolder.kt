@@ -12,7 +12,6 @@ class AlbumViewHolder(
     private val listener: CustomClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(album: Album) {
-        binding.album = album
         binding.tvAlbumTitle.text = itemView.context.getString(R.string.album_name, album.albumId)
         Picasso.get().load(album.photos.first { it.thumbnailUrl.isNotEmpty() }.thumbnailUrl)
             .into(binding.ivAlbum)

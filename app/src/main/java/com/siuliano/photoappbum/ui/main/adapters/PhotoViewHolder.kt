@@ -1,8 +1,6 @@
 package com.siuliano.photoappbum.ui.main.adapters
 
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.siuliano.photoappbum.R
 import com.siuliano.photoappbum.databinding.ItemPhotoBinding
 import com.siuliano.photoappbum.interfaces.CustomClickListener
 import com.siuliano.photoappbum.models.Photo
