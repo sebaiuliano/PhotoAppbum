@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.ListUpdateCallback
 import com.siuliano.photoappbum.ui.main.adapters.PhotoAdapter
 
 object PhotoCallback : ListUpdateCallback {
-    var firstInsert = -1
+    private var firstInsert = -1
     private lateinit var adapter : PhotoAdapter
 
     fun bind(adapter: PhotoAdapter) {

@@ -1,6 +1,5 @@
 package com.siuliano.photoappbum.network.repositories
 
-import androidx.lifecycle.MutableLiveData
 import com.siuliano.photoappbum.models.Album
 import com.siuliano.photoappbum.network.endpoints.DataSourceApi
 import com.siuliano.photoappbum.repositories.DataSourceRepository

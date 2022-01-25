@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.siuliano.photoappbum.databinding.ItemPhotoBinding
 import com.siuliano.photoappbum.interfaces.CustomClickListener
-import com.siuliano.photoappbum.models.Album
 import com.siuliano.photoappbum.models.Photo
-import com.siuliano.photoappbum.ui.main.callback.AlbumCallback
 import com.siuliano.photoappbum.ui.main.callback.PhotoCallback
 
 class PhotoAdapter(
