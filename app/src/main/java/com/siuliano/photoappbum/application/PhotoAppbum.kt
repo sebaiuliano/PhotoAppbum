@@ -18,8 +18,8 @@ class PhotoAppbum : Application() {
             androidContext(this@PhotoAppbum)
             modules(listOf(
                 networkModule,
-                viewModelModule,
-                apiRepositoryModule
+                apiRepositoryModule,
+                viewModelModule
             ))
         }
     }

@@ -9,10 +9,10 @@ import java.io.IOException
 
 @KoinApiExtension
 class ConnectivityInterceptor: Interceptor, KoinComponent {
-    private val wifiService : WifiService by inject()
+    private val networkService : NetworkService by inject()
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (!wifiService.isOnline()) {
+        if (!networkService.isOnline()) {
             throw IOException("No internet connection")
         } else {
             return chain.proceed(chain.request())

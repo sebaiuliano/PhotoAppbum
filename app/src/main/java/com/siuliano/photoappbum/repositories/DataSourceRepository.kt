@@ -1,7 +1,8 @@
 package com.siuliano.photoappbum.repositories
 
-import com.siuliano.photoappbum.models.Photo
+import androidx.lifecycle.MutableLiveData
+import com.siuliano.photoappbum.models.Album
 
 interface DataSourceRepository {
-    suspend fun getPhotos() : List<Photo>
+    suspend fun getPhotos() : List<Album>
 }
