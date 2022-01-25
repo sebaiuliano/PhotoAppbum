@@ -3,13 +3,14 @@ package com.siuliano.photoappbum.application.modules
 import android.content.Context
 import com.siuliano.photoappbum.application.modules.Properties.BASE_URL
 import com.siuliano.photoappbum.network.ConnectivityInterceptor
-import com.siuliano.photoappbum.network.WifiService
+import com.siuliano.photoappbum.network.NetworkService
+import com.siuliano.photoappbum.network.endpoints.DataSourceApi
+import com.siuliano.photoappbum.network.repositories.DataSourceRepositoryImpl
+import com.siuliano.photoappbum.repositories.DataSourceRepository
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.component.KoinApiExtension
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -27,34 +28,34 @@ val networkModule = module {
             .build()
     }
 
-    fun provideDataSourceApi(client: OkHttpClient, moshi: Moshi, baseUrl: String): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .client(client)
-            .build()
-    }
-
     fun provideMoshi() = Moshi.Builder()
         .build()
 
-    fun provideWifiService(context: Context) : WifiService {
-        return WifiService(context)
+    fun provideRetrofit(httpClient: OkHttpClient, moshi: Moshi, baseUrl: String) : Retrofit =
+        Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(httpClient)
+            .build()
+
+    fun provideDataSourceApi(retrofit: Retrofit): DataSourceApi =
+        retrofit.create(DataSourceApi::class.java)
+
+    fun provideDataSourceApiRepository(dataSourceApiRepositoryImpl: DataSourceRepositoryImpl): DataSourceRepository = dataSourceApiRepositoryImpl
+
+    fun provideWifiService(context: Context) : NetworkService {
+        return NetworkService(context)
     }
 
-    single {
-        provideHttpClient()
-    }
-
-    single {
-        provideDataSourceApi(
-            get(named("http")),
-            get(),
-            BASE_URL
-        )
-    }
+    single { provideHttpClient() }
 
     single { provideMoshi() }
+
+    single { provideRetrofit(get(), get(), BASE_URL) }
+
+    single { provideDataSourceApi(get()) }
+
+    single { provideDataSourceApiRepository(get()) }
 
     single { provideWifiService(androidContext()) }
 }

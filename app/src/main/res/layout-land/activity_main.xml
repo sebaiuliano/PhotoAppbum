@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:id="@+id/rv_albums"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
+            app:spanCount="4"
             tools:listitem="@layout/item_album" />
 
 
