@@ -1,5 +1,6 @@
 package com.siuliano.photoappbum.ui.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.siuliano.photoappbum.models.Album
@@ -14,7 +15,10 @@ class MainViewModel(
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var photosMutableHandler : MutableLiveData<List<Album>> = MutableLiveData()
+    private var _photosMutableHandler : MutableLiveData<List<Album>> = MutableLiveData()
+    val photosMutableHandler : LiveData<List<Album>>
+        get() = _photosMutableHandler
+
     var selectedAlbum : Album? = null
     var selectedPhoto : Photo? = null
 
@@ -23,7 +27,7 @@ class MainViewModel(
             val response = withContext(Dispatchers.IO) {
                 dataSourceRepository.getPhotos()
             }
-            photosMutableHandler.postValue(response)
+            _photosMutableHandler.postValue(response)
         }
     }
 
